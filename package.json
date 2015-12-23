@@ -1,0 +1,17 @@
+{
+  "name": "lavalamp-lights",
+  "version": "1.0.0",
+  "description": "Status indicator lights",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.13.3",
+    "promise": "7.1.1",
+    "rpi-gpio": "0.7.0",
+    "winston": "2.1.1"
+  }
+}

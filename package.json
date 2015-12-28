@@ -4,10 +4,14 @@
   "description": "Status indicator lights",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 0"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Dean Merchant <deanmerchant@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Dean177/lava-lights.git"
+  },
+  "license": "MIT",
   "dependencies": {
     "express": "4.13.3",
     "promise": "7.1.1",

@@ -30,7 +30,7 @@ const setupPins = io.setupPins([
 
 app.get('/', (req, res) => { res.send(lightStatus); });
 
-app.post('/light/:color/:on', (req, res, next) => {
+app.post('/light/:color/:on', (req, res) => {
   const { color, on } = req.params;
   if ( ! (contains(['green', 'red'], color) && contains(['on', 'off'], on))) {
     const errorMessage = `Invalid url, sent color: ${req.params.color} on/off:${req.params.on}`;

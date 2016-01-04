@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
-    "start": "node --harmony_destructuring --harmony_rest_parametersindex.js"
+    "start": "node --harmony_destructuring --harmony_rest_parameters index.js"
   },
   "author": "Dean Merchant <deanmerchant@gmail.com>",
   "repository": {

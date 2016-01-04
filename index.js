@@ -6,17 +6,19 @@ const logger = require('./logger-config');
 
 const app = express();
 const io = new GpioPromise(rpGpio);
-const contains = (haystack, needle) => (haystack.indexOf(needle) != -1);
-const changeLightStatus = (light, isOn) => (io.writePin(light, isOn === 'on'));
-
-const green = 7;
-const red = 8;
+const lightPins = { green: 7, red: 8 };
 const lightStatus = { red: false, green: false };
 const setupPins = io.setupPins([
-  { pinId: red, direction: rpGpio.DIR_OUT },
-  { pinId: green, direction: rpGpio.DIR_OUT }
+  { pinId: lightPins.red, direction: rpGpio.DIR_OUT },
+  { pinId: lightPins.green, direction: rpGpio.DIR_OUT }
 ]);
 
+
+const contains = (haystack, needle) => (haystack.indexOf(needle) != -1);
+const changeLightStatus = (pinId, isOn) => {
+  logger.info(`Changing ${pinId} to ${isOn}`);
+  return io.writePin(pinId, isOn === 'on');
+};
 
 app.get('/', (req, res) => res.send(lightStatus));
 
@@ -29,7 +31,7 @@ app.post('/light/:color/:on', (req, res) => {
     return res.status(400).send({ error: message});
   }
 
-  changeLightStatus(color, on).then(() => {
+  changeLightStatus(lightPins[color], on).then(() => {
     logger.info(`Changed light status ${req.params.color}:${lightStatus[req.params.color]} -> ${req.params.color}:${req.params.on}`);
     lightStatus[color] = (on === 'on');
     res.send(lightStatus);

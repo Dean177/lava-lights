@@ -1,6 +1,9 @@
 const logger = require('./logger-config');
 const pinStatus = {};
 
+const logPinStatus = () => {
+  logger.info(JSON.stringify(pinStatus));
+};
 
 module.exports = {
   setup: (pinId, dir, edge, cb) => {
@@ -9,12 +12,12 @@ module.exports = {
       edge,
       isSetup: true
     };
-    logger.info(pinStatus);
+    logPinStatus();
     cb();
   },
   write: (pinId, value, cb) => {
     pinStatus[pinId]['lastValue'] = value;
-    logger.info(pinStatus);
+    logPinStatus();
     cb();
   },
   DIR_OUT: 'DIR_OUT'

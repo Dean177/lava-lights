@@ -1,2 +1,4 @@
 On node V5 +
-`npm start`
+`sudo npm start`
+
+* note this must be run as root or access to the GPIO pins wont work

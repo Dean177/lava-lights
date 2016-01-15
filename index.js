@@ -20,10 +20,10 @@ const onBuildFailure = () => turnOffAllLights().then(() => io.writePin(redPinId,
 
 const lastBuildNotificationsReceived = [];
 
-app.get('/status', (request, response) => response.send({
+app.get('/status', (request, response) => response.send(JSON.stringify({
   status: 'beep boop',
   buildNotifications: lastBuildNotificationsReceived.reverse()
-}));
+}, null, 2)));
 
 app.post('/build', (request, response) => {
   if (lastBuildNotificationsReceived.length > 20) { lastBuildNotificationsReceived.shift(); }

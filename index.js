@@ -18,9 +18,17 @@ const turnOffAllLights = () => io.writePins([{ pinId: greenPinId, value: false }
 const onBuildSuccess = () => turnOffAllLights().then(() => io.writePin(greenPinId, true));
 const onBuildFailure = () => turnOffAllLights().then(() => io.writePin(redPinId, true));
 
-app.get('/status', (request, response) => response.send('beep boop'));
+const lastBuildNotificationsReceived = [];
+
+app.get('/status', (request, response) => response.send({
+  status: 'beep boop',
+  buildNotifications: lastBuildNotificationsReceived.reverse()
+}));
 
 app.post('/build', (request, response) => {
+  if (lastBuildNotificationsReceived.length > 20) { lastBuildNotificationsReceived.shift(); }
+  lastBuildNotificationsReceived.push(request.body);
+
   const { name, build: { phase, status } } = request.body;
   logger.info(`Build notification received name: ${name}, phase: ${phase}, status: ${status}`);
   const changeBuildStatus = (status === 'STABLE') ? onBuildSuccess() : onBuildFailure();

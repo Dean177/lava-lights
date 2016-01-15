@@ -4,7 +4,7 @@
   "description": "Status indicator lights",
   "main": "index.js",
   "scripts": {
-    "test": "node --harmony_destructuring --harmony_rest_parameters test.js",
+    "test": "echo 'No tests' && exit 0",
     "start": "node --harmony_destructuring --harmony_rest_parameters index.js",
     "start:pi": "env IsPI=true node --harmony_destructuring --harmony_rest_parameters index.js"
   },

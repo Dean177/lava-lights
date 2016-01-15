@@ -27,7 +27,7 @@ app.get('/status', (request, response) => response.send(JSON.stringify({
 
 app.post('/build', (request, response) => {
   if (lastBuildNotificationsReceived.length > 20) { lastBuildNotificationsReceived.shift(); }
-  lastBuildNotificationsReceived.push(request.body);
+  lastBuildNotificationsReceived.push({ dateReceived: new Date(), ...request.body });
 
   const { name, build: { phase, status } } = request.body;
   logger.info(`Build notification received name: ${name}, phase: ${phase}, status: ${status}`);

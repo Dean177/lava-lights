@@ -31,9 +31,9 @@ app.post('/build', (request, response) => {
 
   const { name, build: { phase, status } } = request.body;
   logger.info(`Build notification received name: ${name}, phase: ${phase}, status: ${status}`);
-  const changeBuildStatus = (status === 'STABLE') ? onBuildSuccess() : onBuildFailure();
+  const handleBuildNotification = (status === 'UNSTABLE') ? onBuildFailure(): onBuildSuccess();
 
-  changeBuildStatus
+  handleBuildNotification
     .then(() => response.status(200).send())
     .catch((err) => {
       logger.error(err);

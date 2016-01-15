@@ -1,15 +1,14 @@
 const logger = require('./logger-config');
-const pinStatus = {};
 
+const pinStatus = {};
 const logPinStatus = () => {
-  logger.info(JSON.stringify(pinStatus));
+  logger.info('PinStatus', JSON.stringify(pinStatus));
 };
 
 module.exports = {
-  setup: (pinId, dir, edge, cb) => {
+  setup: (pinId, direction, cb) => {
     pinStatus[pinId] = {
-      direction: dir,
-      edge,
+      direction,
       isSetup: true
     };
     logPinStatus();

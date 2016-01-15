@@ -12,13 +12,13 @@ class Gpio {
     return this.pinStatus.hasOwnProperty(pinId) && this.pinStatus[pinId];
   }
 
-  setupPin(pinId, direction, edge) {
+  setupPin(pinId, direction) {
     return new Promise((fulfill, reject) => {
-      this.gpio.setup(pinId, direction, edge, (err) =>  {
+      this.gpio.setup(pinId, direction, (err) =>  {
         this.pinStatus[pinId] = !err;
         if (err) { return reject(err); }
-        logger.info(`Setup ${pinId}. direction: ${direction}; edge: ${edge};`);
-        fulfill({ pinId, direction, edge });
+        logger.info(`Setup ${pinId}, direction: ${direction}.`);
+        fulfill({ pinId, direction });
       });
     });
   }

@@ -48,7 +48,7 @@ app.post('/light/:color/:on', (request, response) => {
   const value = on === 'on';
 
   io.writePin(pinId, value)
-    .then(() => logger.info(`Changed light status${color}: ${on}`))
+    .then(() => logger.info(`Changed light status; ${color}: ${on}`))
     .then(() => response.status(200).send())
     .catch((err) => {
       logger.error(`Failed to change light status for: ${color} to: ${on}`);

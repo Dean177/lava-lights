@@ -1,5 +1,6 @@
 "use strict";
 const Promise = require('promise');
+const logger = require('./logger-config');
 
 class Gpio {
   constructor(gpio) {
@@ -15,7 +16,9 @@ class Gpio {
     return new Promise((fulfill, reject) => {
       this.gpio.setup(pinId, direction, edge, (err) =>  {
         this.pinStatus[pinId] = !err;
-        return (err) ? reject(err) : fulfill(pinId);
+        if (err) { return reject(err); }
+        logger.info(`Setup ${pinId}. direction: ${direction}; edge: ${edge};`);
+        fulfill({ pinId, direction, edge });
       });
     });
   }
@@ -27,9 +30,14 @@ class Gpio {
   writePin(pinId, value) {
     return new Promise((fulfill, reject) => {
       if (!this.isPinSetup(pinId)) {
-        reject(new Error('Attempted to write to pin before pin was setup'));
+        return reject(new Error('Attempted to write to pin before pin was setup'));
       }
-      this.gpio.write(pinId, value, (err) =>  { err ? reject(err) : fulfill({ pinId, value }); });
+
+      this.gpio.write(pinId, value ? 1 : 0, (err) =>  {
+        if (err) { return reject(err); }
+        logger.info(`Wrote ${value} to ${pinId}`);
+        fulfill({ pinId, value });
+      });
     });
   }
 

@@ -8,7 +8,7 @@ class Gpio {
   }
 
   isPinSetup(pinId) {
-    return pinStatus.hasOwnProperty(pinId) && pinStatus[pinId];
+    return this.pinStatus.hasOwnProperty(pinId) && this.pinStatus[pinId];
   }
 
   setupPin(pinId, direction, edge) {

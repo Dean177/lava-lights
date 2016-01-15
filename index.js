@@ -29,7 +29,10 @@ app.post('/build', (request, res) => {
 
   changeBuildStatus
     .then(res.status(200).send)
-    .catch(logger.error);
+    .catch((err) => {
+      logger.error(err);
+      res.status(500).send(err);
+    });
 });
 
 app.post('/light/:color/:on', (req, res) => {

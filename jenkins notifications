@@ -1,17 +1,20 @@
 post recieved: { 
 	name: 'Lunch - Bristol',
   url: 'job/Lunch%20-%20Bristol/',
-  build: 
-   { full_url: 'http://jenkins.zoo.lan/job/Lunch%20-%20Bristol/93/',
+  build: {
+      full_url: 'http://jenkins.zoo.lan/job/Lunch%20-%20Bristol/93/',
      number: 93,
      phase: 'STARTED',
      url: 'job/Lunch%20-%20Bristol/93/',
-     scm: 
-      { url: 'https://github.com/Dean177/lunch.git',
+     scm: {
+        url: 'https://github.com/Dean177/lunch.git',
         branch: 'origin/master',
-        commit: '50ac70b120db637d54efcda41b92803c3306bd73' },
+        commit: '50ac70b120db637d54efcda41b92803c3306bd73'
+     },
      log: 'Started by user Dean Merchant\nNotifying endpoint \'HTTP:http://alpaca.zoo.lan:9000/build\'\n',
-     artifacts: {} } }
+     artifacts: {}
+  }
+}
 	 
 post recieved: { name: 'Lunch - Bristol',
   url: 'job/Lunch%20-%20Bristol/',

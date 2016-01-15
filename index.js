@@ -1,10 +1,10 @@
 "use strict";
 const bodyParser = require('body-parser');
 const express = require('express');
+const logger = require('./logger-config');
 const GpioPromise =  require('./gpio-promise');
 const gpio = process.env.IsPI ? require('rpi-gpio') : require('./mock-gpio');
 const io = new GpioPromise(gpio);
-const logger = require('./logger-config');
 
 const app = express();
 app.use(bodyParser.json());
@@ -17,6 +17,10 @@ const setupPins = io.setupPins([{ pinId: redPinId, direction: gpio.DIR_OUT }, { 
 const turnOffAllLights = () => io.writePins([{ pinId: greenPinId, value: false },  { pinId: redPinId, value: false }]);
 const onBuildSuccess = () => turnOffAllLights().then(() => io.writePin(greenPinId, true));
 const onBuildFailure = () => turnOffAllLights().then(() => io.writePin(redPinId, true));
+
+app.get('/status', (request, res) => {
+  res.send('ok');
+});
 
 app.post('/build', (request, res) => {
   const { name, build: { phase, status } } = request.body;
@@ -53,6 +57,9 @@ app.post('/light/:color/:on', (req, res) => {
 });
 
 setupPins.then(() => {
-  app.listen(9000, logger.error);
-  logger.info(`listening on 9000`);
+  app.listen(9000, (err) => {
+    if (err) {throw err; }
+    logger.info(`listening on 9000`);
+    logger.info('Is running on raspberryPi: ", process.env.IsPI');
+  });
 }).catch(logger.error);

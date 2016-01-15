@@ -19,5 +19,5 @@ module.exports = {
     logPinStatus();
     cb();
   },
-  DIR_OUT: 'DIR_OUT'
+  DIR_OUT: 'out'
 };

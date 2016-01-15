@@ -37,21 +37,20 @@ app.post('/build', (request, res) => {
 
 app.post('/light/:color/:on', (req, res) => {
   const { color, on } = req.params;
+  logger.info('Manual color set', color, on);
 
   const isValidUrl = (contains(['green', 'red'], color) && contains(['on', 'off'], on));
-  if ( !isValidUrl) {
-    const errorMessage = `Invalid url, sent color: ${req.params.color} on/off:${req.params.on}`;
+  if ( ! isValidUrl) {
+    const errorMessage = `Invalid url, sent color: ${color} on/off: ${on}`;
     logger.error(errorMessage);
-    return res.status(400).send({ error: message});
+    return res.status(400).send({ error: errorMessage });
   }
 
   const pinId = color == 'green' ? greenPinId : redPinId;
   const value = on === 'on';
 
   io.writePin(pinId, value)
-    .then(() => {
-      logger.info(`Changed light status ${req.params.color}:${lightStatus[req.params.color]} -> ${req.params.color}:${req.params.on}`);
-    })
+    .then(() => { logger.info(`Changed light status${color}: ${on}`); })
     .then(res.status(200).send)
     .catch((err) => {
       logger.error(`Failed to change light status for: ${color} to: ${on}`);
@@ -60,9 +59,10 @@ app.post('/light/:color/:on', (req, res) => {
 });
 
 setupPins.then(() => {
-  app.listen(9000, (err) => {
+  const port = 9000;
+  app.listen(port, (err) => {
     if (err) {throw err; }
-    logger.info(`listening on 9000`);
-    logger.info('Is running on raspberryPi: ", process.env.IsPI');
+    logger.info(`listening on ${port}`);
+    logger.info(`Is running on raspberryPi: ${process.env.IsPI}`);
   });
 }).catch(logger.error);

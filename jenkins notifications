@@ -1,0 +1,44 @@
+post recieved: { 
+	name: 'Lunch - Bristol',
+  url: 'job/Lunch%20-%20Bristol/',
+  build: 
+   { full_url: 'http://jenkins.zoo.lan/job/Lunch%20-%20Bristol/93/',
+     number: 93,
+     phase: 'STARTED',
+     url: 'job/Lunch%20-%20Bristol/93/',
+     scm: 
+      { url: 'https://github.com/Dean177/lunch.git',
+        branch: 'origin/master',
+        commit: '50ac70b120db637d54efcda41b92803c3306bd73' },
+     log: 'Started by user Dean Merchant\nNotifying endpoint \'HTTP:http://alpaca.zoo.lan:9000/build\'\n',
+     artifacts: {} } }
+	 
+post recieved: { name: 'Lunch - Bristol',
+  url: 'job/Lunch%20-%20Bristol/',
+  build: 
+   { full_url: 'http://jenkins.zoo.lan/job/Lunch%20-%20Bristol/93/',
+     number: 93,
+     phase: 'COMPLETED',
+     status: 'UNSTABLE',
+     url: 'job/Lunch%20-%20Bristol/93/',
+     scm: 
+      { url: 'https://github.com/Dean177/lunch.git',
+        branch: 'origin/master',
+        commit: '50ac70b120db637d54efcda41b92803c3306bd73' },
+     log: '[...truncated 29 lines...]\nPlease, fix them up in the work tree, and then use \'git add/rm <file>\'\nas appropriate to mark resolution, or use \'git commit -a\'.\nnpm WARN unmet dependency /home/lunch/lunch/node_modules/babel-eslint requires babel-core@\'^5.8.23\' but will load\nnpm WARN unmet dependency /home/lunch/lunch/node_modules/babel-core,\nnpm WARN unmet dependency which is version 6.3.21\nnpm WARN unmet dependency /home/lunch/lunch/node_modules/node-sass/node_modules/node-gyp requires glob@\'3 || 4\' but will load\nnpm WARN unmet dependency /home/lunch/lunch/node_modules/node-sass/node_modules/glob,\nnpm WARN unmet dependency which is version 5.0.15\nbootstrap@4.0.0-alpha node_modules/bootstrap\nwarn:    --minUptime not set. Defaulting to: 1000ms\nwarn:    --spinSleepTime not set. Your script will exit if it does not stay up for at least 1000ms\ninfo:    Forever processing file: npm\nerror:   Cannot start forever\nerror:   script /home/lunch/lunch/npm does not exist.\nSSH: EXEC: completed after 17,672 ms\nSSH: Disconnecting configuration [BristolAppsLinux] ...\nERROR: Exception when publishing, exception message [Exec exit status not zero. Status [255]]\nBuild step \'Send build artifacts over SSH\' changed build result to UNSTABLE\nNotifying endpoint \'HTTP:http://alpaca.zoo.lan:9000/build\'\n',
+     artifacts: {} } }
+	 
+post recieved: { name: 'Lunch - Bristol',
+  url: 'job/Lunch%20-%20Bristol/',
+  build: 
+   { full_url: 'http://jenkins.zoo.lan/job/Lunch%20-%20Bristol/93/',
+     number: 93,
+     phase: 'FINALIZED',
+     status: 'UNSTABLE',
+     url: 'job/Lunch%20-%20Bristol/93/',
+     scm: 
+      { url: 'https://github.com/Dean177/lunch.git',
+        branch: 'origin/master',
+        commit: '50ac70b120db637d54efcda41b92803c3306bd73' },
+     log: '[...truncated 34 lines...]\nnpm WARN unmet dependency /home/lunch/lunch/node_modules/node-sass/node_modules/node-gyp requires glob@\'3 || 4\' but will load\nnpm WARN unmet dependency /home/lunch/lunch/node_modules/node-sass/node_modules/glob,\nnpm WARN unmet dependency which is version 5.0.15\nbootstrap@4.0.0-alpha node_modules/bootstrap\nwarn:    --minUptime not set. Defaulting to: 1000ms\nwarn:    --spinSleepTime not set. Your script will exit if it does not stay up for at least 1000ms\ninfo:    Forever processing file: npm\nerror:   Cannot start forever\nerror:   script /home/lunch/lunch/npm does not exist.\nSSH: EXEC: completed after 17,672 ms\nSSH: Disconnecting configuration [BristolAppsLinux] ...\nERROR: Exception when publishing, exception message [Exec exit status not zero. Status [255]]\nBuild step \'Send build artifacts over SSH\' changed build result to UNSTABLE\nNotifying endpoint \'HTTP:http://alpaca.zoo.lan:9000/build\'\nStarted calculate disk usage of build\nFinished Calculation of disk usage of build in 0 seconds\nStarted calculate disk usage of workspace\nFinished Calculation of disk usage of workspace in  5 second\nFinished: UNSTABLE\n',
+     artifacts: {} } }

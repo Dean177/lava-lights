@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 
 const contains = (haystack, needle) => (haystack.indexOf(needle) != -1);
 
-const [greenPinId, redPinId] = [11, 13];
+const [greenPinId, redPinId] = [18, 23];
 const setupPins = io.setupPins([{ pinId: redPinId, direction: gpio.DIR_OUT }, { pinId: greenPinId, direction: gpio.DIR_OUT }]);
 
 const turnOffAllLights = () => io.writePins([{ pinId: greenPinId, value: false },  { pinId: redPinId, value: false }]);

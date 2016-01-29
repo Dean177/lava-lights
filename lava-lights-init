@@ -4,7 +4,7 @@
 # Required-Stop:
 # Default-Start:        2 3 4 5
 # Default-Stop:         0 1 6
-# Short-Description:    Lavalamp build listener
+# Short-Description:    Lava-lamp build listener
 ### END INIT INFO
 
 export PATH=$PATH:/usr/local/bin/node
@@ -13,15 +13,18 @@ export HOME=/root
 
 case "$1" in
   start)
+    echo "Starting lava-lights"
     /usr/local/bin/forever start --workingDir /home/pi/lava-lights --sourceDir /home/pi/lava-lights -a -l forever.log -o out.log -e err.log --minUptime 1000 --spinSleepTime 1000 -c "node --harmony_destructuring --harmony_rest_parameters" index.js
     ;;
   stop)
+    echo "Stopping lava-lights"
     exec /usr/local/bin/forever stopall
     ;;
   *)
 
-  echo "Usage: /etc/init.d/nodeup {start|stop}"
+  echo "Usage: /etc/init.d/lava-lights {start|stop}"
   exit 1
   ;;
 esac
+
 exit 0

@@ -1,4 +1,7 @@
-On node V5 +
-`sudo npm start`
+To run on desktop with an emulated gpio
+`npm start`
 
-* note this must be run as root or access to the GPIO pins wont work
+When actually running on a raspberry pi: 
+`sudo npm run start:pi`
+
+* note this must be run as root to have access to the pi's GPIO pins

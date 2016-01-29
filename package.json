@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo 'No tests' && exit 0",
     "start": "node --harmony_destructuring --harmony_rest_parameters index.js",
-    "forever-start": "forever start -a -l forever.log -o out.log -e err.log --minUptime 1000 --spinSleepTime 1000 -c \"node --harmony_destructuring --harmony_rest_parameters\" index.js",
+    "forever-start": "forever start -a -l forever.log -o out.log -e err.log --minUptime 1000 --spinSleepTime 1000 -c \"env IsPi=true node --harmony_destructuring --harmony_rest_parameters\" index.js",
     "stop": "forever stop index.js",
     "start:pi": "env IsPI=true node --harmony_destructuring --harmony_rest_parameters index.js"
   },
@@ -19,7 +19,7 @@
   "dependencies": {
     "body-parser": "1.14.2",
     "express": "4.13.4",
-    "forever": "^0.15.1",
+    "forever": "0.15.1",
     "promise": "7.1.1",
     "rpi-gpio": "0.7.0",
     "winston": "2.1.1"

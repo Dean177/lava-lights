@@ -68,7 +68,7 @@ app.post('/light/:color/:on', (request, response) => {
 });
 
 setupPins.then(() => {
-  const port = 9000;
+  const port = process.env.IsPI ? 80 : 9000;
   app.listen(port, (err) => {
     if (err) { throw err; }
     logger.info(`Listening on ${port}`);

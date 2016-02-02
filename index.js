@@ -36,7 +36,7 @@ app.post('/build', (request, response) => {
     lastBuildNotificationsReceived.shift();
     fullRequests.shift();
   }
-  fullRequests.push(request);
+  fullRequests.push(request.body);
   lastBuildNotificationsReceived.push(Object.assign({}, { dateReceived: new Date() }, request.body));
 
   const { name, build: { status } } = request.body;

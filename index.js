@@ -19,21 +19,28 @@ const onBuildSuccess = () => turnOffAllLights().then(() => io.writePin(greenPinI
 const onBuildFailure = () => turnOffAllLights().then(() => io.writePin(redPinId, true));
 
 const lastBuildNotificationsReceived = [];
+const fullRequests = [];
 
 app.get('/status', (request, response) => response.send(
   `<pre>
-    ${JSON.stringify({ status: 'beep boop',
-      buildNotifications: lastBuildNotificationsReceived.reverse()
+    ${JSON.stringify({
+      status: 'beep boop',
+      buildNotifications: lastBuildNotificationsReceived.reverse(),
+      fullRequests: fullRequests.reverse()
     }, null, 2)}
   </pre>`
 ));
 
 app.post('/build', (request, response) => {
-  if (lastBuildNotificationsReceived.length > 20) { lastBuildNotificationsReceived.shift(); }
+  if (lastBuildNotificationsReceived.length > 20) {
+    lastBuildNotificationsReceived.shift();
+    fullRequests.shift();
+  }
+  fullRequests.push(request);
   lastBuildNotificationsReceived.push(Object.assign({}, { dateReceived: new Date() }, request.body));
 
-  const { name, build: { phase, status } } = request.body;
-  logger.info(`Build notification received name: ${name}, phase: ${phase}, status: ${status}`);
+  const { name, build: { status } } = request.body;
+  logger.info(`Build notification received name: ${name}, status: ${status}`);
   const handleBuildNotification = (status === 'UNSTABLE') ? onBuildFailure(): onBuildSuccess();
 
   handleBuildNotification

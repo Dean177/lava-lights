@@ -19,7 +19,7 @@
   "dependencies": {
     "body-parser": "1.14.2",
     "express": "4.13.4",
-    "forever": "0.15.1",
+    "forever": "0.15.3",
     "promise": "7.1.1",
     "rpi-gpio": "0.7.0",
     "winston": "2.2.0"
